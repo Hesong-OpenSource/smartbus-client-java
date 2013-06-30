@@ -45,7 +45,7 @@ WINAPI static void recvdata_cb(void * arg, unsigned char local_clientid,
 	jmethodID packinfo_init = (*env)->GetMethodID(env, packinfo_cls, "<init>",
 			"(BBBBBBBBB)V");
 	jobject packinfo = (*env)->NewObject(env, packinfo_cls, packinfo_init,
-			(jbyte) head->head_flag, (jbyte) head->cmd,
+			(jbyte) head->head_flag, (jbyte) head->cmd, (jbyte) head->cmdtype,
 			(jbyte) head->src_unit_id, (jbyte) head->src_unit_client_id,
 			(jbyte) head->src_unit_client_type, (jbyte) head->dest_unit_id,
 			(jbyte) head->dest_unit_client_id,
