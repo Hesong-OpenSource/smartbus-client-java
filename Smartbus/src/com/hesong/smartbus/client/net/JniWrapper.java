@@ -3,6 +3,8 @@ package com.hesong.smartbus.client.net;
 import com.hesong.smartbus.client.PackInfo;
 
 import java.util.Map;
+import java.util.Iterator;
+import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class JniWrapper {
@@ -69,4 +71,17 @@ public class JniWrapper {
 			}
 		}
 	}
+
+	protected static void cb_globalconnect(int arg, byte unitid, byte clientid,
+			byte clienttype, byte status, String addinfo) {
+		Iterator<Entry<Byte, Client>> iter = instances.entrySet().iterator();
+		while (iter.hasNext()) {
+			Map.Entry<Byte, Client> pair = (Map.Entry<Byte, Client>) iter
+					.next();
+			Client inst = pair.getValue();
+			inst.getCallbacks().onGlobalConnectInfo(unitid, clientid,
+					clienttype, status, addinfo);
+		}
+	}
+
 }

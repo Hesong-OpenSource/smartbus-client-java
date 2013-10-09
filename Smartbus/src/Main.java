@@ -1,7 +1,7 @@
 import java.io.Console;
 
 import com.hesong.smartbus.client.Callbacks;
-import com.hesong.smartbus.client.FlowInvokeMode;
+//import com.hesong.smartbus.client.FlowInvokeMode;
 import com.hesong.smartbus.client.PackInfo;
 import com.hesong.smartbus.client.net.Client;
 import com.hesong.smartbus.client.net.Client.ConnectError;
@@ -16,10 +16,10 @@ public class Main {
 
 		Console sh = System.console();
 
-		byte unitid = 15;
+		byte unitid = 25;
 		Client.initialize(unitid);
-		Client client = new Client((byte) 15, (long) 15, "192.168.3.21",
-				(short) 8089);
+		final Client client = new Client((byte) 25, (long) 11, "192.168.3.30",
+				(short) 8089, "a java client!");
 
 		class MyCallbacks implements Callbacks {
 			public void onConnectSuccess() {
@@ -28,7 +28,6 @@ public class Main {
 
 			public void onConnectFail(Integer errorCode) {
 				System.out.println("onConnectFail");
-
 			}
 
 			public void onDisconnect() {
@@ -54,27 +53,45 @@ public class Main {
 
 			}
 
+			public void onGlobalConnectInfo(Byte unitId, Byte clientId,
+					Byte clientType, Byte status, String addInfo) {
+				System.out.println("onGlobalConnectInfo");
+			}
+
 		}
 
 		client.setCallbacks(new MyCallbacks());
 
 		try {
+			System.out.println("connect...");
 			client.connect();
 		} catch (ConnectError e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
+		System.out.println("...");
 		while (true) {
+			System.out.println("readLine...");
 			String s = sh.readLine();
+			System.out.println(String.format("readLine = %s", s));
 			if (s == "quit") {
 				sh.printf("quit...\n");
 				break;
 			} else {
 				try {
-					client.invokeFlow(0, 0, "Project1", "Flow1",
-							FlowInvokeMode.HASRESULT, 30,
-							String.format("[\'%s\']", s));
+					client.sendText(
+							(byte) 0,
+							(byte) 211,
+							1,
+							10,
+							-1,
+							String.format(
+									"{\"id\": \"123123\", \"method\" : \"Echo\", \"params\" : [\"%s\"]}",
+									s));
+					// client.invokeFlow(0, 0, "Project1", "Flow1",
+					// FlowInvokeMode.HASRESULT, 30,
+					// String.format("[\'%s\']", s));
 				} catch (SendDataError e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

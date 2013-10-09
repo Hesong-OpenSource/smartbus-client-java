@@ -117,6 +117,25 @@ public class Client {
 	}
 
 	/**
+	 * 
+	 * @param localClientId
+	 *            客户端的ID。同一个客户端实例下的客户端ID必须不同。
+	 * @param localClientType
+	 *            客户端类型标志
+	 * @param masterHost
+	 *            服务器主机名
+	 * @param masterport
+	 *            服务端口
+	 * @param extendedInfo
+	 *            附加信息
+	 */
+	public Client(Byte localClientId, Long localClientType, String masterHost,
+			Short masterport, String extendedInfo) {
+		this(localClientId, localClientType, masterHost, masterport, "",
+				(short) 0, "", "", extendedInfo);
+	}
+
+	/**
 	 * @brief Smarbus 网络客户端类构造函数
 	 * 
 	 * @param localClientId

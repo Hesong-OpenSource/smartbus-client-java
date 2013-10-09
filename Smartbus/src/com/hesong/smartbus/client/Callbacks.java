@@ -28,6 +28,23 @@ public interface Callbacks {
 	public void onDisconnect();
 
 	/**
+	 * 全局节点客户端连接、断开通知
+	 * 
+	 * @param unitId
+	 *            节点客户端的unitid
+	 * @param clientId
+	 *            客户端ID。是node中心节点连接时，clientid值为-1
+	 * @param clientType
+	 *            客户端类型
+	 * @param status
+	 *            连接状态： 0 断开连接、1 新建连接、2 已有的连接
+	 * @param addInfo
+	 *            连接附加信息
+	 */
+	public void onGlobalConnectInfo(Byte unitId, Byte clientId,
+			Byte clientType, Byte status, String addInfo);
+
+	/**
 	 * @brief 收到了文本
 	 * 
 	 * @param head
