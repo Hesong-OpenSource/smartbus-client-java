@@ -18,7 +18,7 @@ public class Main {
 
 		byte unitid = 25;
 		Client.initialize(unitid);
-		final Client client = new Client((byte) 25, (long) 11, "192.168.3.30",
+		final Client client = new Client((byte) 26, (long) 12, "192.168.3.20",
 				(short) 8089, "a java client!");
 
 		class MyCallbacks implements Callbacks {
@@ -69,6 +69,7 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 
 		System.out.println("...");
 		while (true) {

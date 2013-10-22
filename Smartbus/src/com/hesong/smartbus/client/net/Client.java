@@ -4,7 +4,7 @@ import com.hesong.smartbus.client.Callbacks;
 import com.hesong.smartbus.client.FlowInvokeMode;
 
 /**
- * @brief 和声 Smarbus 网络客户端类
+ * 和声 Smarbus 网络客户端类
  * 
  * @author tanbro
  * 
@@ -12,26 +12,26 @@ import com.hesong.smartbus.client.FlowInvokeMode;
 public class Client {
 
 	/**
-	 * @brief 初始化
+	 * 初始化
 	 * 
-	 * @detail 类库初始化。 在使用其它方法之前，必须调用该静态方法。
+	 * 类库初始化。 在使用其它方法之前，必须调用该静态方法。
 	 * 
 	 * @param unitId
-	 *            该网络客户端实例的单元ID，每个使用该类库的进程都有必须全局唯一单元ID。
+	 *            该网络客户端实例的单元ID，每个使用该类库的进程都有必须全局唯一单元ID。必须大于等于16，并且全网唯一。
 	 */
 	public static void initialize(Byte unitId) {
 		JniWrapper.Init(unitId);
 	}
 
 	/**
-	 * @brief 类库释放。
+	 * 类库释放。
 	 */
 	public static void release() {
 		JniWrapper.Release();
 	}
 
 	/**
-	 * @brief Smarbus 网络客户端类构造函数
+	 * Smarbus 网络客户端类构造函数
 	 * 
 	 * @param localClientId
 	 *            客户端的ID。同一个客户端单元实例下的客户端ID必须不同。
@@ -68,7 +68,7 @@ public class Client {
 	}
 
 	/**
-	 * @brief Smarbus 网络客户端类构造函数
+	 * Smarbus 网络客户端类构造函数
 	 * 
 	 * @param localClientId
 	 *            客户端的ID。同一个客户端实例下的客户端ID必须不同。
@@ -95,7 +95,7 @@ public class Client {
 	}
 
 	/**
-	 * @brief Smarbus 网络客户端类构造函数
+	 * Smarbus 网络客户端类构造函数
 	 * 
 	 * @param localClientId
 	 *            客户端的ID。同一个客户端实例下的客户端ID必须不同。
@@ -117,6 +117,7 @@ public class Client {
 	}
 
 	/**
+	 * Smarbus 网络客户端类构造函数
 	 * 
 	 * @param localClientId
 	 *            客户端的ID。同一个客户端实例下的客户端ID必须不同。
@@ -136,7 +137,7 @@ public class Client {
 	}
 
 	/**
-	 * @brief Smarbus 网络客户端类构造函数
+	 * Smarbus 网络客户端类构造函数
 	 * 
 	 * @param localClientId
 	 *            客户端的ID。同一个客户端实例下的客户端ID必须不同。
@@ -154,7 +155,7 @@ public class Client {
 	}
 
 	/**
-	 * @brief 释放客户端
+	 * 释放客户端
 	 */
 	public void dispose() {
 		JniWrapper.instances.remove(this.localClientId);
@@ -173,7 +174,8 @@ public class Client {
 	private Callbacks callbacks;
 
 	/**
-	 * @brief 连接到服务器
+	 * 连接到服务器
+	 * 
 	 * @throws ConnectError
 	 *             连接错误
 	 */
@@ -188,7 +190,8 @@ public class Client {
 	}
 
 	/**
-	 * @brief 发送文本数据
+	 * 发送文本数据
+	 * 
 	 * @param cmd
 	 *            命令
 	 * @param cmdType
@@ -215,7 +218,7 @@ public class Client {
 	}
 
 	/**
-	 * @brief 调用SmartFlow上的流程
+	 * 调用SmartFlow上的流程
 	 * 
 	 * @param serverUnitId
 	 *            SmartFlow处于Smartbus的实例ID
@@ -232,8 +235,8 @@ public class Client {
 	 * @param valueList
 	 *            传递给流程的输入参数。
 	 * @return 流程调用的ID。如果需要流程返回数据，则通过该返回值进行配对。
-	 * @ref com.hesong.smartbus.client.Callbacks.onFlowReturn 与
-	 * @ref com.hesong.smartbus.client.Callbacks.onFlowTimeout 回调的参数中将包含该ID.
+	 * @see com.hesong.smartbus.client.Callbacks#onFlowReturn
+	 * @see com.hesong.smartbus.client.Callbacks#onFlowTimeout
 	 * @throws SendDataError
 	 *             发送数据异常
 	 */
@@ -251,7 +254,7 @@ public class Client {
 
 	/**
 	 * 
-	 * @brief 客户端ID
+	 * 客户端ID
 	 */
 	public Byte getLocalClientId() {
 		return localClientId;
@@ -259,7 +262,7 @@ public class Client {
 
 	/**
 	 * 
-	 * @brief 客户端类型标志
+	 * 客户端类型标志
 	 */
 	public Long getLocalClientType() {
 		return localClientType;
@@ -267,7 +270,7 @@ public class Client {
 
 	/**
 	 * 
-	 * @brief smartbus 服务主机名
+	 * smartbus 服务主机名
 	 */
 	public String getMasterHost() {
 		return masterHost;
@@ -275,14 +278,14 @@ public class Client {
 
 	/**
 	 * 
-	 * @brief smartbus 服务端口
+	 * smartbus 服务端口
 	 */
 	public Short getMasterport() {
 		return masterport;
 	}
 
 	/**
-	 * @brief smartbus 从服务主机名
+	 * smartbus 从服务主机名
 	 */
 	public String getSlaverHost() {
 		return slaverHost;
@@ -290,7 +293,7 @@ public class Client {
 
 	/**
 	 * 
-	 * @brief smartbus 从服务端口
+	 * smartbus 从服务端口
 	 */
 	public Short getSlaverPort() {
 		return slaverPort;
@@ -298,7 +301,7 @@ public class Client {
 
 	/**
 	 * 
-	 * @brief 登录名
+	 * 登录名
 	 */
 	public String getAuthorUser() {
 		return authorUser;
@@ -306,7 +309,7 @@ public class Client {
 
 	/**
 	 * 
-	 * @brief 登录密码
+	 * 登录密码
 	 */
 	public String getAuthorPassword() {
 		return authorPassword;
@@ -314,7 +317,7 @@ public class Client {
 
 	/**
 	 * 
-	 * @brief 连接扩展信息
+	 * 连接扩展信息
 	 */
 	public String getExtendedInfo() {
 		return extendedInfo;
@@ -322,7 +325,7 @@ public class Client {
 
 	/**
 	 * 
-	 * @brief 客户端的回调函数实现
+	 * 客户端的回调函数实现
 	 */
 	public Callbacks getCallbacks() {
 		return callbacks;
@@ -330,14 +333,14 @@ public class Client {
 
 	/**
 	 * 
-	 * @brief callbacks 客户端的回调函数实现
+	 * callbacks 客户端的回调函数实现
 	 */
 	public void setCallbacks(Callbacks callbacks) {
 		this.callbacks = callbacks;
 	}
 
 	/**
-	 * @brief 连接错误异常类
+	 * 连接错误异常类
 	 * 
 	 */
 	public class ConnectError extends Exception {
@@ -352,7 +355,7 @@ public class Client {
 	}
 
 	/**
-	 * @brief 发送数据错误异常类
+	 * 发送数据错误异常类
 	 * 
 	 */
 	public class SendDataError extends Exception {

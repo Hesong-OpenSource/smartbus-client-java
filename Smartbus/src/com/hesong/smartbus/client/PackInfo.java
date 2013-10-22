@@ -1,8 +1,10 @@
 package com.hesong.smartbus.client;
 
 /**
- * @brief Smartbus 数据包信息。
- * @detail 该信息包含在每一个收到的数据包中，记录的数据的发送者与接收者等信息。
+ * Smartbus 数据包信息。
+ * 
+ * 该信息包含在每一个收到的数据包中，记录的数据的发送者与接收者等信息。
+ * 
  * @author tanbro
  * 
  */
@@ -32,63 +34,63 @@ public class PackInfo {
 	private byte dstClientType;
 
 	/**
-	 * @brief 标志
+	 * 标志
 	 */
 	public byte getFlag() {
 		return flag;
 	}
 
 	/**
-	 * @brief 命令
+	 * 命令
 	 */
 	public byte getCmd() {
 		return cmd;
 	}
 
 	/**
-	 * @brief 命令类型
+	 * 命令类型
 	 */
 	public byte getCmdType() {
 		return cmdType;
 	}
 
 	/**
-	 * @brief 源单元ID
+	 * 源单元ID
 	 */
 	public byte getSrcUnitId() {
 		return srcUnitId;
 	}
 
 	/**
-	 * @brief 源客户端ID
+	 * 源客户端ID
 	 */
 	public byte getSrcClientId() {
 		return srcClientId;
 	}
 
 	/**
-	 * @brief 源客户端类型
+	 * 源客户端类型
 	 */
 	public byte getSrcClientType() {
 		return srcClientType;
 	}
 
 	/**
-	 * @brief 目的单元ID
+	 * 目的单元ID
 	 */
 	public byte getDstUnitid() {
 		return dstUnitid;
 	}
 
 	/**
-	 * @brief 目的客户端ID
+	 * 目的客户端ID
 	 */
 	public byte getDstClientId() {
 		return dstClientId;
 	}
 
 	/**
-	 * @brief 目的客户端类型
+	 * 目的客户端类型
 	 */
 	public byte getDstClientType() {
 		return dstClientType;
