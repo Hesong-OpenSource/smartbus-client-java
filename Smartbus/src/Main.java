@@ -18,7 +18,7 @@ public class Main {
 
 		byte unitid = 25;
 		Client.initialize(unitid);
-		final Client client = new Client((byte) 26, (long) 12, "192.168.3.20",
+		final Client client = new Client((byte) 26, (long) 12, "10.4.62.45",
 				(short) 8089, "a java client!");
 
 		class MyCallbacks implements Callbacks {
@@ -84,7 +84,7 @@ public class Main {
 					client.sendText(
 							(byte) 0,
 							(byte) 211,
-							1,
+							0,
 							10,
 							-1,
 							String.format(
