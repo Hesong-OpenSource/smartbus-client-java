@@ -143,7 +143,8 @@ public class JniWrapper {
 	}
 
 	protected static void cb_recvdata(int arg, byte local_clientid,
-			PackInfo head, String txt) {
+			byte src_unit_id, byte src_unit_client_id,
+			byte dest_unit_id, byte dest_unit_client_id , String txt) {
 		Client inst = instances.get(local_clientid);
 		if (inst != null) {
 			inst.getCallbacks().onReceiveText(head, txt);
