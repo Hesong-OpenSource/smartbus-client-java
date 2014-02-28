@@ -52,19 +52,10 @@ WINAPI static void recvdata_cb(void * arg, unsigned char local_clientid,
 		SMARTBUS_PACKET_HEAD * head, void * data, int size) {
 	JNIEnv* env = NULL;
 	(*jvm)->AttachCurrentThread(jvm, (void**) (&env), NULL);
-	jobject packinfo_cls = (*env)->FindClass(env,
-			"com/hesong/smartbus/client/PackInfo");
-	jmethodID packinfo_init = (*env)->GetMethodID(env, packinfo_cls, "<init>",
-			"(BBBBBBBBB)V");
-	jobject packinfo = (*env)->NewObject(env, packinfo_cls, packinfo_init,
-			(jbyte) head->head_flag, (jbyte) head->cmd, (jbyte) head->cmdtype,
-			(jbyte) head->src_unit_id, (jbyte) head->src_unit_client_id,
-			(jbyte) head->src_unit_client_type, (jbyte) head->dest_unit_id,
-			(jbyte) head->dest_unit_client_id,
-			(jbyte) head->dest_unit_client_type);
 	jstring txt = (*env)->NewStringUTF(env, data);
 	(*env)->CallStaticVoidMethod(env, clazz, cb_recvdata, (jint) arg,
-			(jbyte) local_clientid, packinfo, txt);
+			(jbyte) local_clientid, (jbyte) head->src_unit_id, (jbyte) head->src_unit_client_id,
+			(jbyte) head->dest_unit_id, (jbyte) head->dest_unit_client_id, txt);
 	(*jvm)->DetachCurrentThread(jvm);
 }
 
