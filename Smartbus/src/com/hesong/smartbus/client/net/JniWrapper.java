@@ -142,14 +142,18 @@ public class JniWrapper {
 		}
 	}
 
-	protected static void cb_recvdata(int arg, byte local_clientid,
-			byte src_unit_id, byte src_unit_client_id,
-			byte dest_unit_id, byte dest_unit_client_id , String txt) {
-		Client inst = instances.get(local_clientid);
-		if (inst != null) {
-			inst.getCallbacks().onReceiveText(head, txt);
-		}
-	}
+    protected static void cb_recvdata(int arg, byte cmd, byte cmdtype,
+            byte src_unit_id, byte src_unit_client_id,
+            byte src_unit_client_type, byte dest_unit_id,
+            byte dest_unit_client_id,
+            byte dest_unit_client_type , String txt) {
+        System.out.println("Recv clientId = "+dest_unit_client_id);
+        Client inst = instances.get(dest_unit_client_id);
+        PackInfo head = new PackInfo((byte)arg, cmd, cmdtype, src_unit_id, src_unit_client_id, src_unit_client_type, dest_unit_id, dest_unit_client_id, dest_unit_client_type);
+        if (inst != null) {
+            inst.getCallbacks().onReceiveText(head, txt);
+        }
+    }
 
 	protected static void cb_invokeflowret(int arg, byte local_clientid,
 			PackInfo head, String projectid, int invoke_id, int ret,
