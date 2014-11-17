@@ -38,7 +38,7 @@ WINAPI static void disconnect_cb(void * arg, unsigned char local_clientid) {
 }
 
 WINAPI static void globalconnect_cb(void * arg, char unitid, char clientid,
-		char clienttype, char status, const char * add_info) {
+		char clienttype, char accesspoint_unit, char status, const char * add_info) {
 	JNIEnv* env = NULL;
 	(*jvm)->AttachCurrentThread(jvm, (void**) (&env), NULL);
 	jstring txt_add_info = (*env)->NewStringUTF(env, add_info);
@@ -53,7 +53,7 @@ WINAPI static void recvdata_cb(void * arg, unsigned char local_clientid,
 	JNIEnv* env = NULL;
 	(*jvm)->AttachCurrentThread(jvm, (void**) (&env), NULL);
 	jstring txt = (*env)->NewStringUTF(env, data);
-	(*env)->CallStaticVoidMethod(env, clazz, cb_recvdata, (jint) arg,
+	(*env)->CallStaticVoidMethod(env, clazz, cb_recvdata, (jint) arg, (jbyte) local_clientid,
 			(jbyte) head->cmd, (jbyte) head->cmdtype, (jbyte) head->src_unit_id,
 			(jbyte) head->src_unit_client_id,
 			(jbyte) head->src_unit_client_type, (jbyte) head->dest_unit_id,
@@ -94,10 +94,10 @@ jint JNICALL Java_com_hesong_smartbus_client_net_JniWrapper_Init(JNIEnv *env,
 	cb_disconnect = (*env)->GetStaticMethodID(env, cls, "cb_disconnect",
 			"(IB)V");
 	cb_recvdata = (*env)->GetStaticMethodID(env, cls, "cb_recvdata",
-			"(IBBBBBBBBLjava/lang/String;)V");
+			"(IBBBBBBBBBLjava/lang/String;)V");
 	cb_invokeflowret =
 			(*env)->GetStaticMethodID(env, cls, "cb_invokeflowret",
-					"(IBLcom/hesong/smartbus/client/PackInfo;Ljava/lang/String;IILjava/lang/String;)V");
+					"(IBBBBBBBBBBLjava/lang/String;IILjava/lang/String;)V");
 	cb_globalconnect = (*env)->GetStaticMethodID(env, cls, "cb_globalconnect",
 			"(IBBBBLjava/lang/String;)V");
 	int result = SmartBusNetCli_Init((unsigned char) unitid);
