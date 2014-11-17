@@ -122,7 +122,7 @@ jint JNICALL Java_com_hesong_smartbus_client_net_JniWrapper_CreateConnect(
 	const char *pc_author_username = (*env)->GetStringUTFChars(env,
 			author_username, NULL);
 	const char *pc_author_pwd = (*env)->GetStringUTFChars(env, author_pwd,
-			NULL);
+	NULL);
 	const char *pc_add_info = (*env)->GetStringUTFChars(env, add_info, NULL);
 
 	int result = SmartBusNetCli_CreateConnect((unsigned char) local_clientid,
@@ -158,7 +158,7 @@ jint JNICALL Java_com_hesong_smartbus_client_net_JniWrapper_RemoteInvokeFlow(
 	const char* pc_projectid = (*env)->GetStringUTFChars(env, projectid, NULL);
 	const char* pc_flowid = (*env)->GetStringUTFChars(env, flowid, NULL);
 	const char* pc_in_valuelist = (*env)->GetStringUTFChars(env, in_valuelist,
-			NULL);
+	NULL);
 	int result = SmartBusNetCli_RemoteInvokeFlow((unsigned char) local_clientid,
 			(int) server_unitid, (int) ipscindex, pc_projectid, pc_flowid,
 			(int) mode, (int) timeout, pc_in_valuelist);
