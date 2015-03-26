@@ -20,7 +20,7 @@ static jmethodID cb_globalconnect = NULL;
 static jmethodID cb_recvdata = NULL;
 static jmethodID cb_invokeflowret = NULL;
 
-WINAPI static void connection_cb(void * arg, unsigned char local_clientid,
+static void WINAPI connection_cb(void * arg, unsigned char local_clientid,
 		int accesspoint_unitid, int ack) {
 	JNIEnv* env = NULL;
 	(*jvm)->AttachCurrentThread(jvm, (void**) (&env), NULL);
@@ -29,7 +29,7 @@ WINAPI static void connection_cb(void * arg, unsigned char local_clientid,
 	(*jvm)->DetachCurrentThread(jvm);
 }
 
-WINAPI static void disconnect_cb(void * arg, unsigned char local_clientid) {
+static void WINAPI disconnect_cb(void * arg, unsigned char local_clientid) {
 	JNIEnv* env = NULL;
 	(*jvm)->AttachCurrentThread(jvm, (void**) (&env), NULL);
 	(*env)->CallStaticVoidMethod(env, clazz, cb_disconnect, (jint) arg,
@@ -37,7 +37,7 @@ WINAPI static void disconnect_cb(void * arg, unsigned char local_clientid) {
 	(*jvm)->DetachCurrentThread(jvm);
 }
 
-WINAPI static void globalconnect_cb(void * arg, char unitid, char clientid,
+static void WINAPI globalconnect_cb(void * arg, char unitid, char clientid,
 		char clienttype, char accesspoint_unit, char status, const char * add_info) {
 	JNIEnv* env = NULL;
 	(*jvm)->AttachCurrentThread(jvm, (void**) (&env), NULL);
@@ -48,7 +48,7 @@ WINAPI static void globalconnect_cb(void * arg, char unitid, char clientid,
 	(*jvm)->DetachCurrentThread(jvm);
 }
 
-WINAPI static void recvdata_cb(void * arg, unsigned char local_clientid,
+static void WINAPI recvdata_cb(void * arg, unsigned char local_clientid,
 		SMARTBUS_PACKET_HEAD * head, void * data, int size) {
 	JNIEnv* env = NULL;
 	(*jvm)->AttachCurrentThread(jvm, (void**) (&env), NULL);
@@ -62,7 +62,7 @@ WINAPI static void recvdata_cb(void * arg, unsigned char local_clientid,
 	(*jvm)->DetachCurrentThread(jvm);
 }
 
-WINAPI static void invokeflow_ret_cb(void * arg, unsigned char local_clientid,
+static void WINAPI invokeflow_ret_cb(void * arg, unsigned char local_clientid,
 		SMARTBUS_PACKET_HEAD * head, const char * projectid, int invoke_id,
 		int ret, const char * param) {
 	JNIEnv* env = NULL;
