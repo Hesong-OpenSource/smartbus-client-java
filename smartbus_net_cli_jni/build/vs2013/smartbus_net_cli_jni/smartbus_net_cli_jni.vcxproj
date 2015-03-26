@@ -86,7 +86,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
+    <Text Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\com_hesong_smartbus_client_net_JniWrapper.h" />
