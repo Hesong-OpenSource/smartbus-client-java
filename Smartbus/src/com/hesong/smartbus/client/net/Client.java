@@ -104,8 +104,8 @@ public class Client {
     }
 
     public void globalConnect(int arg, byte unitid, byte clientid,
-            byte clienttype, byte accesspoint_unit, byte status, String addinfo) {
-        JniWrapper.cb_globalconnect(arg, unitid, clientid, clienttype, accesspoint_unit, status,
+            byte clienttype, byte status, String addinfo) {
+        JniWrapper.cb_globalconnect(arg, unitid, clientid, clienttype,  status,
                 addinfo);
     }
 

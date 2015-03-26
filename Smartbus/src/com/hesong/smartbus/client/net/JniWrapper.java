@@ -85,8 +85,7 @@ public class JniWrapper {
     }
 
     protected static void cb_globalconnect(int arg, byte unitid, byte clientid,
-            byte clienttype, byte accesspoint_unit, byte status, String addinfo) {
-        System.out.println(instances);
+            byte clienttype, byte status, String addinfo) {
         Iterator<Entry<Byte, Client>> iter = instances.entrySet().iterator();
         while (iter.hasNext()) {
             Map.Entry<Byte, Client> pair = (Map.Entry<Byte, Client>) iter
